@@ -1,1 +1,22 @@
 import re
+v,r = map(str, input().split(',')) // 전압과 저항 입력
+class Bat:
+    def __init__(self,a):
+          self.val = a 
+class Res:
+    def __init__(self,b):
+        self.b = b
+    def tot_res(self):
+        str = self.b
+        items = re.findall('\(([^)]+)', str) // 괄호안에서 성분 추출    
+        for i in items:
+            a = list(int,i.split('//'))
+            i = int(a[0]*a[1]/(a[0]+a[1])) // 병렬계산
+        
+        
+        
+        
+class Point:
+    pass
+v = v.replace('-','+-')
+tot_v = sum(list(map(int, inv.split('+'))))
