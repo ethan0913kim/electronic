@@ -1,5 +1,6 @@
 import re
-v,r = map(str, input().split(',')) // 전압과 저항 입력
+import cv2
+v,r = map(str, input().split(',')) # 전압과 저항 입력
 class Bat:
     def __init__(self,a):
           self.val = a 
@@ -8,10 +9,24 @@ class Res:
         self.b = b
     def tot_res(self):
         str = self.b
-        items = re.findall('\(([^)]+)', str) // 괄호안에서 성분 추출    
+        items = re.findall('\(([^)]+)', str) # 괄호안에서 성분 추출
+        string = str #괄호와 성분 제거
+        regex = re.compile('\(.+?\)') 
+        output = regex.sub('', string)
+        fortot_r = list(map(str.split("+")))
+        fortot_r = [x for x in fortot_r if x]
+        tot_par = 0
         for i in items:
-            a = list(int,i.split('//'))
-            i = int(a[0]*a[1]/(a[0]+a[1])) // 병렬계산
+            a = list(map(int,i.split('//')))
+            for j in range(len(a)):
+                sum_par == 0
+                sum_par += 1/a[j]
+            sum_par = 1/sum_par
+            tot_par += sum_par
+        fortot_r.append(tot_par) # 병렬계산
+        return sum(fortot_r)
+
+ 
         
         
         
@@ -19,4 +34,6 @@ class Res:
 class Point:
     pass
 v = v.replace('-','+-')
-tot_v = sum(list(map(int, inv.split('+'))))
+tot_v = sum(list(map(int, v.split('+'))))
+tot_r_out = Res(r)
+print(tot_r_out.tot_res())
