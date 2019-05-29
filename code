@@ -28,17 +28,17 @@ class Res:
         string = regex.sub('', string)
         fortot_r = string.split("+") 
         fortot_r = [int(x) for x in fortot_r if x]
-        tot_par = 0 # 병렬연결된 저항들의 합성저항 계산하는 변수선언
+        tot_par = 0 
         for i in items:
             a = list(map(int,i.split('//')))
-            sum_par = 0 #병렬 계산 돕는 변수
-            for j in range(len(a)): #모든 병렬 연결에 대해
+            sum_par = 0 
+            for j in range(len(a)): 
                 sum_par += 1/a[j] 
-            sum_par = 1/sum_par #병렬계산식 이용
-            tot_par += sum_par #하나의 병렬연결 합성 저항값을 추가
+            sum_par = 1/sum_par
+            tot_par += sum_par 
             
-        fortot_r.append(tot_par) # 병렬저항의 합성값을 앞의 fortot_r 리스트에 넣기
-        return sum(fortot_r) #총 합성저항값을 반환
+        fortot_r.append(tot_par) 
+        return sum(fortot_r)
 
         
         
