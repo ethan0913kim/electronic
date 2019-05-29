@@ -22,12 +22,12 @@ class Res:
     def __init__(self,b):
         self.b = b
     def tot_res(self):
-        string = self.b #입력한 저항들의 저항값을 srting에 넣는다
-        items = list(re.findall('\(([^)]+)', string)) # srting 문자열의 괄호안에 있는 성분들 추출
+        string = self.b
+        items = list(re.findall('\(([^)]+)', string))
         regex = re.compile('\(.+?\)') 
-        string = regex.sub('', string) #괄호와 이미 추출해 items에 있는 성분들 제거
-        fortot_r = string.split("+") #직렬 연결된 저항들의 저항 값들을 +기준으로 나누어서 리스트에 저장
-        fortot_r = [int(x) for x in fortot_r if x] #빈 문자열 제거
+        string = regex.sub('', string)
+        fortot_r = string.split("+") 
+        fortot_r = [int(x) for x in fortot_r if x]
         tot_par = 0 # 병렬연결된 저항들의 합성저항 계산하는 변수선언
         for i in items:
             a = list(map(int,i.split('//')))
