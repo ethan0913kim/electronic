@@ -1,23 +1,23 @@
 import re
 import cv2
-v,r = map(str, input().split(',')) # 전압과 저항 입력
+v,r = map(str, input().split(','))
 class Vol:
     def __init__(self,a):
           self.a = a
     def tot_vol(self):
-        string = self.a #입력한 전지들의 전압값을 srting에 넣는다
-        items = list(re.findall('\(([^)]+)', string)) # srting 문자열의 괄호안에 있는 성분들 추출
+        string = self.a 
+        items = list(re.findall('\(([^)]+)', string))
         regex = re.compile('\(.+?\)') 
-        string = regex.sub('', string) #괄호와 이미 추출해 items에 있는 성분들 제거
-        string = string.replace("-","+-") #전지중 -(반대방향으로 걸려있는 전지)를 계산하기 편리하게 하기 위한 코드
-        fortot_v = map(str, string.split("+")) # 직렬 연결된 전지들의 전압들을 +기준으로 나누어서 리스트에 저장
-        fortot_v = [int(x) for x in fortot_v if x] #리스트에서 빈 문자열 제거하기위한 코드
-        tot_par_vol = 0 #병렬계산하기 위한 변수 선언 
+        string = regex.sub('', string)
+        string = string.replace("-","+-") 
+        fortot_v = map(str, string.split("+"))
+        fortot_v = [int(x) for x in fortot_v if x] 
+        tot_par_vol = 0 
         for i in items:
-            a = list(map(int,i.split('//'))) #병렬 연결된 전지들의 전압 계산 위해 추출해 리스트 형태로 저장
-            tot_par_vol += max(a) #사실 병렬연결된 전지들의 전압은 같아야 하므로 최댓값만 이용하면 된다.
-        fortot_v.append(tot_par_vol) #병렬연결된 전지들의 총 합성전압을 리스트에 추가
-        return sum(fortot_v) #총 합성전압 반환
+            a = list(map(int,i.split('//')))
+            tot_par_vol += max(a) 
+        fortot_v.append(tot_par_vol)
+        return sum(fortot_v)
 class Res:
     def __init__(self,b):
         self.b = b
